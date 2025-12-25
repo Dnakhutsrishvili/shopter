@@ -1,7 +1,7 @@
 import express from "express";
 import type { Request, Response } from "express";
 import dotenv from "dotenv";
-import { connectDB } from "./connectDb.ts";
+import { connectDB } from "./config/connectDb.ts";
 
 dotenv.config();
 

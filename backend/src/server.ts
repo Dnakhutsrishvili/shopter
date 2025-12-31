@@ -18,34 +18,7 @@ async function start() {
 
   // app.use(authenticate);
 
-  // app.use("/api", router);
-
-  app.get("/users", async (req, res) => {
-    try {
-      const users = await UserModel.find({});
-      res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ message: "error" });
-    }
-  });
-
-  app.post("/users", async (req, res) => {
-    const errors = validateCreateUser(req.body);
-
-    if (errors.length > 0) {
-      return res.status(400).json({
-        message: "Validation failed",
-        errors,
-      });
-    }
-
-    try {
-      const user = await UserModel.create(req.body);
-      res.status(201).json(user);
-    } catch (error) {
-      res.status(500).json({ message: "User creation failed" });
-    }
-  });
+  app.use("/api", router);
 
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);

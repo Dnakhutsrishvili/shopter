@@ -7,6 +7,7 @@ export interface Address {
 export interface User {
   id: string;
   email: string;
+  password: string;
   role: "guest" | "user" | "admin";
 
   profile: {

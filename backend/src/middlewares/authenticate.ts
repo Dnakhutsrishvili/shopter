@@ -1,6 +1,5 @@
-import { Request, Response } from "express";
-import pkg from "express";
-const { NextFunction } = pkg;
+import type { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
 export const authenticate = (
   req: Request,

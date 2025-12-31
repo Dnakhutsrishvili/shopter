@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { UserPayload } from "../types/express";
+import type { Request, Response, NextFunction } from "express";
+import type { UserPayload } from "../types/express.js";
 
 export const authorize = (...roles: UserPayload["role"][]) => {
   return (req: Request, res: Response, next: NextFunction) => {

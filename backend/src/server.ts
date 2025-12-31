@@ -4,7 +4,7 @@ import { connectDB } from "./config/connectDb.ts";
 import { UserModel } from "./models/User.ts";
 import { validateCreateUser } from "./validators/userValidator.ts";
 import { authenticate } from "./middlewares/authenticate.ts";
-// import router from "./routes/index.ts";
+import router from "./routes/index.ts";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ async function start() {
 
   app.use(express.json());
 
-  app.use(authenticate);
+  // app.use(authenticate);
 
   // app.use("/api", router);
 

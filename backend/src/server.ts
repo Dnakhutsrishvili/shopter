@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/connectDb.ts";
 import { UserModel } from "./models/User.ts";
 import { validateCreateUser } from "./validators/userValidator.ts";
-import mongoose from "mongoose";
+import { authenticate } from "./middlewares/authenticate.ts";
+// import router from "./routes/index.ts";
 
 dotenv.config();
 
@@ -15,9 +16,17 @@ async function start() {
 
   app.use(express.json());
 
+  app.use(authenticate);
+
+  // app.use("/api", router);
+
   app.get("/users", async (req, res) => {
-    const users = await UserModel.find({});
-    console.log(users);
+    try {
+      const users = await UserModel.find({});
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ message: "error" });
+    }
   });
 
   app.post("/users", async (req, res) => {
@@ -34,7 +43,6 @@ async function start() {
       const user = await UserModel.create(req.body);
       res.status(201).json(user);
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: "User creation failed" });
     }
   });
@@ -45,4 +53,3 @@ async function start() {
 }
 
 start();
-console.log("UserModel mongoose instance", mongoose.connection.readyState);

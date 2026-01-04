@@ -2,7 +2,6 @@ import mongoose, { Schema, model } from "mongoose";
 import type { Address, User } from "../types/User.ts";
 
 const AddressSchema = new Schema<Address>({
-  id: { type: String, required: true },
   city: { type: String, required: true },
   street: { type: String, required: true },
   postalCode: { type: String, required: true },
@@ -10,7 +9,6 @@ const AddressSchema = new Schema<Address>({
 
 const UserSchema = new Schema<User>(
   {
-    id: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["guest", "user", "admin"], required: true },

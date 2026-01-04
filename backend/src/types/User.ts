@@ -1,11 +1,9 @@
 export interface Address {
-  id: string;
   city: string;
   street: string;
   postalCode: string;
 }
 export interface User {
-  id: string;
   email: string;
   password: string;
   role: "guest" | "user" | "admin";
